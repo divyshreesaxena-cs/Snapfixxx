@@ -9,27 +9,30 @@ export function Navbar() {
   const [isOpen, setIsOpen] = useState(false)
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-white/80 backdrop-blur-md border-b border-zinc-200">
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-xl border-b border-border">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between h-16 items-center">
+        <div className="flex justify-between h-20 items-center">
           <div className="flex items-center gap-2">
-            <Link href="/" className="flex items-center gap-2">
-              <div className="bg-blue-600 p-1.5 rounded-lg">
-                <Hammer className="w-6 h-6 text-white" />
+            <Link href="/" className="flex items-center gap-3 group">
+              <div className="bg-primary p-2 rounded-xl shadow-lg shadow-primary/20 transition-transform group-hover:scale-110 group-active:scale-95">
+                <Hammer className="w-6 h-6 text-primary-foreground" />
               </div>
-              <span className="text-xl font-bold tracking-tight text-zinc-900">SnapFix</span>
+              <span className="text-2xl font-black tracking-tighter text-foreground group-hover:text-primary transition-colors">SnapFix</span>
             </Link>
           </div>
 
-          <div className="hidden md:flex items-center gap-8">
-            <Link href="/services" className="text-sm font-medium text-zinc-600 hover:text-zinc-900">Services</Link>
-            <Link href="/providers" className="text-sm font-medium text-zinc-600 hover:text-zinc-900">Providers</Link>
-            <Link href="/bookings" className="text-sm font-medium text-zinc-600 hover:text-zinc-900">My Bookings</Link>
-            <Button variant="outline" size="sm" className="gap-2">
-              <User className="w-4 h-4" />
+          <div className="hidden md:flex items-center gap-10">
+            <Link href="/services" className="text-base font-bold text-muted-foreground hover:text-primary transition-colors">Services</Link>
+            <Link href="/providers" className="text-base font-bold text-muted-foreground hover:text-primary transition-colors">Providers</Link>
+            <Link href="/bookings" className="text-base font-bold text-muted-foreground hover:text-primary transition-colors">My Bookings</Link>
+            <div className="h-6 w-px bg-border mx-2" />
+            <Button variant="ghost" size="sm" className="gap-2 font-bold text-base hover:bg-secondary/20">
+              <User className="w-5 h-5 text-secondary-foreground" />
               Login
             </Button>
-            <Button size="sm" className="bg-blue-600 hover:bg-blue-700">Get Started</Button>
+            <Button size="lg" className="bg-primary hover:bg-primary/90 text-primary-foreground font-black rounded-2xl px-6 shadow-lg shadow-primary/20 transition-all hover:scale-105 active:scale-95">
+              Get Started
+            </Button>
           </div>
 
           <div className="md:hidden">
