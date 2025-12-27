@@ -16,19 +16,19 @@ export function ServiceCard({ service }: { service: Service }) {
 
   return (
     <Link href={`/services/${service.id}`}>
-      <Card className="group hover:shadow-lg transition-all duration-300 border-zinc-200 overflow-hidden">
-        <CardContent className="p-6">
-          <div className="w-12 h-12 rounded-2xl bg-blue-50 flex items-center justify-center mb-4 group-hover:bg-blue-600 transition-colors duration-300">
-            <Icon className="w-6 h-6 text-blue-600 group-hover:text-white transition-colors duration-300" />
+      <Card className="group hover:shadow-2xl transition-all duration-500 border-border overflow-hidden rounded-[2rem] bg-card hover:-translate-y-1">
+        <CardContent className="p-8">
+          <div className="w-16 h-16 rounded-2xl bg-primary/20 flex items-center justify-center mb-6 group-hover:bg-primary transition-all duration-500 shadow-inner">
+            <Icon className="w-8 h-8 text-primary group-hover:text-primary-foreground transition-colors duration-500" />
           </div>
-          <h3 className="text-lg font-semibold text-zinc-900 mb-2">{service.name}</h3>
-          <p className="text-sm text-zinc-500 line-clamp-2 mb-4">
+          <h3 className="text-2xl font-black text-foreground mb-3 tracking-tight">{service.name}</h3>
+          <p className="text-base text-muted-foreground font-medium line-clamp-2 mb-6 leading-relaxed">
             {service.description}
           </p>
-          <div className="flex items-center justify-between mt-auto">
-            <span className="text-sm font-medium text-zinc-900">Starts at ${service.base_price}</span>
-            <span className="text-blue-600 text-sm font-semibold group-hover:translate-x-1 transition-transform">
-              Book Now →
+          <div className="flex items-center justify-between mt-auto pt-6 border-t border-border/50">
+            <span className="text-base font-bold text-foreground">Starts at ${service.base_price}</span>
+            <span className="text-primary text-base font-black group-hover:translate-x-1 transition-transform flex items-center gap-1">
+              Book Now <Icons.ArrowRight className="w-5 h-5" />
             </span>
           </div>
         </CardContent>
