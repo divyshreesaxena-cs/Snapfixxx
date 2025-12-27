@@ -92,108 +92,109 @@ export function BookingForm({ service, providers }: { service: Service, provider
   return (
     <Card className="border-zinc-200 shadow-sm">
       <CardContent className="p-6">
-        <form onSubmit={handleBooking} className="space-y-6">
-          <div className="space-y-4">
-            <Label className="text-base font-semibold text-zinc-900">1. Select a Professional</Label>
-            <div className="grid grid-cols-1 gap-3">
-              {providers.map((provider) => (
-                <div
-                  key={provider.id}
-                  onClick={() => setSelectedProvider(provider.id)}
-                  className={cn(
-                    "flex items-center gap-4 p-4 rounded-xl border-2 cursor-pointer transition-all",
-                    selectedProvider === provider.id
-                      ? "border-blue-600 bg-blue-50/50 shadow-sm"
-                      : "border-zinc-100 hover:border-zinc-200"
-                  )}
-                >
-                  <img
-                    src={provider.image_url}
-                    alt={provider.name}
-                    className="w-12 h-12 rounded-full object-cover border border-zinc-200"
-                  />
-                  <div className="flex-1">
-                    <h4 className="font-semibold text-zinc-900">{provider.name}</h4>
-                    <div className="flex items-center gap-3 text-xs text-zinc-500 mt-1">
-                      <span className="flex items-center gap-1">
-                        <Star className="w-3 h-3 text-yellow-500 fill-yellow-500" />
-                        {provider.rating}
-                      </span>
-                      <span>•</span>
-                      <span>{provider.experience_years}y exp</span>
-                      <span>•</span>
-                      <span>{provider.location}</span>
+          <form onSubmit={handleBooking} className="space-y-8">
+            <div className="space-y-5">
+              <Label className="text-lg font-black text-foreground">1. Select a Professional</Label>
+              <div className="grid grid-cols-1 gap-4">
+                {providers.map((provider) => (
+                  <div
+                    key={provider.id}
+                    onClick={() => setSelectedProvider(provider.id)}
+                    className={cn(
+                      "flex items-center gap-5 p-5 rounded-2xl border-2 cursor-pointer transition-all duration-300",
+                      selectedProvider === provider.id
+                        ? "border-primary bg-primary/5 shadow-md scale-[1.02]"
+                        : "border-border hover:border-primary/30"
+                    )}
+                  >
+                    <img
+                      src={provider.image_url}
+                      alt={provider.name}
+                      className="w-14 h-14 rounded-full object-cover border-2 border-background shadow-sm"
+                    />
+                    <div className="flex-1">
+                      <h4 className="font-bold text-foreground text-lg">{provider.name}</h4>
+                      <div className="flex items-center gap-3 text-sm text-muted-foreground mt-1">
+                        <span className="flex items-center gap-1 font-semibold text-accent-foreground">
+                          <Icons.Star className="w-4 h-4 text-accent-foreground fill-accent-foreground" />
+                          {provider.rating}
+                        </span>
+                        <span className="opacity-30">•</span>
+                        <span className="font-medium">{provider.experience_years}y exp</span>
+                        <span className="opacity-30">•</span>
+                        <span className="font-medium">{provider.location}</span>
+                      </div>
+                    </div>
+                    <div className={cn(
+                      "w-6 h-6 rounded-full border-2 flex items-center justify-center transition-all duration-300",
+                      selectedProvider === provider.id ? "border-primary bg-primary" : "border-border"
+                    )}>
+                      {selectedProvider === provider.id && <div className="w-2.5 h-2.5 bg-primary-foreground rounded-full" />}
                     </div>
                   </div>
-                  <div className={cn(
-                    "w-5 h-5 rounded-full border-2 flex items-center justify-center",
-                    selectedProvider === provider.id ? "border-blue-600 bg-blue-600" : "border-zinc-300"
-                  )}>
-                    {selectedProvider === provider.id && <div className="w-2 h-2 bg-white rounded-full" />}
-                  </div>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
-          </div>
 
-          <div className="space-y-4">
-            <Label className="text-base font-semibold text-zinc-900">2. Schedule Date & Time</Label>
-            <Popover>
-              <PopoverTrigger asChild>
-                <Button
-                  variant={"outline"}
-                  className={cn(
-                    "w-full justify-start text-left font-normal h-12 rounded-xl border-zinc-200",
-                    !date && "text-zinc-500"
-                  )}
-                >
-                  <CalendarIcon className="mr-2 h-4 w-4" />
-                  {date ? format(date, "PPP") : <span>Pick a date</span>}
-                </Button>
-              </PopoverTrigger>
-              <PopoverContent className="w-auto p-0" align="start">
-                <Calendar
-                  mode="single"
-                  selected={date}
-                  onSelect={setDate}
-                  initialFocus
-                  disabled={(date) => date < new Date()}
+            <div className="space-y-5">
+              <Label className="text-lg font-black text-foreground">2. Schedule Date & Time</Label>
+              <Popover>
+                <PopoverTrigger asChild>
+                  <Button
+                    variant={"outline"}
+                    className={cn(
+                      "w-full justify-start text-left font-bold h-14 rounded-2xl border-border bg-background hover:bg-secondary/20 hover:border-primary/30 text-base transition-all",
+                      !date && "text-muted-foreground"
+                    )}
+                  >
+                    <CalendarIcon className="mr-3 h-5 w-5 text-primary" />
+                    {date ? format(date, "PPP") : <span>Pick a date</span>}
+                  </Button>
+                </PopoverTrigger>
+                <PopoverContent className="w-auto p-0 rounded-2xl overflow-hidden border-border shadow-2xl" align="start">
+                  <Calendar
+                    mode="single"
+                    selected={date}
+                    onSelect={setDate}
+                    initialFocus
+                    disabled={(date) => date < new Date()}
+                    className="p-3"
+                  />
+                </PopoverContent>
+              </Popover>
+            </div>
+
+            <div className="space-y-5">
+              <Label className="text-lg font-black text-foreground">3. Service Address</Label>
+              <div className="relative group">
+                <MapPin className="absolute left-5 top-4.5 w-5 h-5 text-secondary-foreground transition-colors group-focus-within:text-primary" />
+                <Input
+                  placeholder="Where should the professional come?"
+                  className="pl-14 h-14 rounded-2xl border-border bg-background focus-visible:ring-primary/20 text-base font-medium"
+                  value={address}
+                  onChange={(e) => setAddress(e.target.value)}
                 />
-              </PopoverContent>
-            </Popover>
-          </div>
-
-          <div className="space-y-4">
-            <Label className="text-base font-semibold text-zinc-900">3. Service Address</Label>
-            <div className="relative">
-              <MapPin className="absolute left-4 top-3.5 w-5 h-5 text-zinc-400" />
-              <Input
-                placeholder="Where should the professional come?"
-                className="pl-12 h-12 rounded-xl border-zinc-200"
-                value={address}
-                onChange={(e) => setAddress(e.target.value)}
-              />
+              </div>
             </div>
-          </div>
 
-          <div className="pt-4 border-t border-zinc-100">
-            <div className="flex items-center justify-between mb-6">
-              <span className="text-zinc-500">Service Fee</span>
-              <span className="text-xl font-bold text-zinc-900">${service.base_price}</span>
+            <div className="pt-6 border-t border-border/50">
+              <div className="flex items-center justify-between mb-8">
+                <span className="text-muted-foreground font-bold text-lg">Service Fee</span>
+                <span className="text-3xl font-black text-foreground tracking-tight">${service.base_price}</span>
+              </div>
+              <Button
+                type="submit"
+                disabled={isSubmitting}
+                className="w-full bg-primary hover:bg-primary/90 text-primary-foreground h-16 rounded-2xl text-xl font-black shadow-xl shadow-primary/20 transition-all hover:scale-[1.02] active:scale-95"
+              >
+                {isSubmitting ? "Processing..." : "Confirm Booking"}
+              </Button>
+              <p className="text-center text-sm text-muted-foreground mt-6 flex items-center justify-center gap-2 font-medium">
+                <Clock className="w-4 h-4 text-primary" />
+                Response usually within 15 minutes
+              </p>
             </div>
-            <Button
-              type="submit"
-              disabled={isSubmitting}
-              className="w-full bg-blue-600 hover:bg-blue-700 h-14 rounded-xl text-lg font-bold shadow-lg shadow-blue-200"
-            >
-              {isSubmitting ? "Processing..." : "Confirm Booking"}
-            </Button>
-            <p className="text-center text-xs text-zinc-400 mt-4 flex items-center justify-center gap-1">
-              <Clock className="w-3 h-3" />
-              Response usually within 15 minutes
-            </p>
-          </div>
-        </form>
+          </form>
       </CardContent>
     </Card>
   )
