@@ -1,3 +1,4 @@
+import Link from "next/link"
 import { createClient } from "@/lib/supabase/server"
 import { ServiceCard } from "@/components/ServiceCard"
 import { Button } from "@/components/ui/button"
