@@ -2,7 +2,7 @@ import { createClient } from "@/lib/supabase/server"
 import { ServiceCard } from "@/components/ServiceCard"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
-import { Search, MapPin, Shield, Clock, Star } from "lucide-react"
+import { Search, MapPin, Shield, Clock, Star, Hammer } from "lucide-react"
 
 export default async function Home() {
   const supabase = await createClient()
