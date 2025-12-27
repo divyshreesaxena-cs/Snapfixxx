@@ -33,70 +33,70 @@ export default async function ServiceDetailsPage({
   const Icon = (Icons[service.icon as keyof typeof Icons] || Icons.HelpCircle) as LucideIcon
 
   return (
-    <div className="min-h-screen bg-zinc-50 pb-20">
-      <div className="bg-white border-b border-zinc-200 pt-8 pb-12">
+    <div className="min-h-screen bg-background pb-24">
+      <div className="bg-card border-b border-border pt-12 pb-20">
         <div className="max-w-7xl mx-auto px-4">
           <Link 
             href="/" 
-            className="inline-flex items-center gap-2 text-sm font-medium text-zinc-500 hover:text-zinc-900 mb-8 transition-colors"
+            className="inline-flex items-center gap-2 text-base font-bold text-muted-foreground hover:text-primary mb-10 transition-colors group"
           >
-            <ChevronLeft className="w-4 h-4" />
+            <ChevronLeft className="w-5 h-5 group-hover:-translate-x-1 transition-transform" />
             Back to Services
           </Link>
-
-          <div className="flex flex-col md:flex-row gap-8 items-start justify-between">
+  
+          <div className="flex flex-col md:flex-row gap-12 items-start justify-between">
             <div className="flex-1">
-              <div className="flex items-center gap-4 mb-4">
-                <div className="w-16 h-16 rounded-2xl bg-blue-50 flex items-center justify-center">
-                  <Icon className="w-8 h-8 text-blue-600" />
+              <div className="flex items-center gap-6 mb-8">
+                <div className="w-20 h-20 rounded-[2rem] bg-primary/20 flex items-center justify-center shadow-inner">
+                  <Icon className="w-10 h-10 text-primary" />
                 </div>
                 <div>
-                  <Badge variant="secondary" className="bg-blue-50 text-blue-700 border-blue-100 mb-1">
-                    Home Service
+                  <Badge variant="secondary" className="bg-secondary/30 text-secondary-foreground border-secondary/50 mb-3 px-4 py-1 rounded-full font-bold">
+                    Premium Service
                   </Badge>
-                  <h1 className="text-3xl md:text-4xl font-bold text-zinc-900">{service.name}</h1>
+                  <h1 className="text-4xl md:text-5xl font-black text-foreground tracking-tight leading-tight">{service.name}</h1>
                 </div>
               </div>
-              <p className="text-lg text-zinc-600 max-w-2xl">
+              <p className="text-xl text-muted-foreground max-w-2xl font-medium leading-relaxed">
                 {service.description} Our verified professionals are ready to help you with all your {service.name.toLowerCase()} needs.
               </p>
               
-              <div className="flex flex-wrap gap-6 mt-8">
-                <div className="flex items-center gap-2 text-sm text-zinc-500">
-                  <Shield className="w-4 h-4 text-green-600" />
-                  Satisfaction Guaranteed
+              <div className="flex flex-wrap gap-8 mt-10">
+                <div className="flex items-center gap-3 text-base font-bold text-muted-foreground bg-secondary/20 px-4 py-2 rounded-xl">
+                  <Shield className="w-5 h-5 text-secondary-foreground" />
+                  Verified Experts
                 </div>
-                <div className="flex items-center gap-2 text-sm text-zinc-500">
-                  <Clock className="w-4 h-4 text-blue-600" />
-                  24/7 Availability
+                <div className="flex items-center gap-3 text-base font-bold text-muted-foreground bg-primary/10 px-4 py-2 rounded-xl">
+                  <Clock className="w-5 h-5 text-primary" />
+                  On-Time Guarantee
                 </div>
-                <div className="flex items-center gap-2 text-sm text-zinc-500">
-                  <Star className="w-4 h-4 text-yellow-500" />
-                  4.8+ Rated Experts
+                <div className="flex items-center gap-3 text-base font-bold text-muted-foreground bg-accent/20 px-4 py-2 rounded-xl">
+                  <Star className="w-5 h-5 text-accent-foreground fill-accent-foreground" />
+                  4.8+ Rating
                 </div>
               </div>
             </div>
-
-            <div className="w-full md:w-80 bg-zinc-50 rounded-2xl p-6 border border-zinc-100">
-              <h4 className="font-semibold text-zinc-900 mb-2">Service Pricing</h4>
-              <div className="flex items-baseline gap-1">
-                <span className="text-3xl font-bold text-zinc-900">${service.base_price}</span>
-                <span className="text-zinc-500 text-sm">base price</span>
+  
+            <div className="w-full md:w-96 bg-secondary/10 rounded-[2.5rem] p-10 border border-secondary/30 shadow-inner">
+              <h4 className="font-black text-foreground mb-4 text-lg">Service Pricing</h4>
+              <div className="flex items-baseline gap-2">
+                <span className="text-5xl font-black text-foreground tracking-tighter">${service.base_price}</span>
+                <span className="text-muted-foreground font-bold text-lg">base fee</span>
               </div>
-              <p className="text-xs text-zinc-400 mt-2">
-                * Final price may vary based on the specific work required.
+              <p className="text-sm text-muted-foreground mt-6 font-medium leading-relaxed italic">
+                * Final price may vary based on specific requirements and parts.
               </p>
             </div>
           </div>
         </div>
       </div>
-
-      <div className="max-w-7xl mx-auto px-4 mt-12">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
-          <div className="lg:col-span-2 space-y-12">
+  
+      <div className="max-w-7xl mx-auto px-4 mt-20">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-20">
+          <div className="lg:col-span-2 space-y-20">
             <section>
-              <h2 className="text-2xl font-bold text-zinc-900 mb-6">What's included?</h2>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              <h2 className="text-3xl font-black text-foreground mb-10 tracking-tight">What's included?</h2>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {[
                   "Professional consultation",
                   "Verified expert technician",
@@ -105,42 +105,44 @@ export default async function ServiceDetailsPage({
                   "Transparent pricing",
                   "Quality materials used"
                 ].map((item, i) => (
-                  <div key={i} className="flex items-center gap-3 p-4 bg-white rounded-xl border border-zinc-100 shadow-sm">
-                    <div className="w-5 h-5 rounded-full bg-emerald-50 flex items-center justify-center shrink-0">
-                      <Icons.Check className="w-3 h-3 text-emerald-600" />
+                  <div key={i} className="flex items-center gap-4 p-5 bg-card rounded-2xl border border-border shadow-sm group hover:border-primary/30 transition-colors">
+                    <div className="w-7 h-7 rounded-full bg-primary/20 flex items-center justify-center shrink-0">
+                      <Icons.Check className="w-4 h-4 text-primary" />
                     </div>
-                    <span className="text-zinc-700 font-medium">{item}</span>
+                    <span className="text-foreground font-bold">{item}</span>
                   </div>
                 ))}
               </div>
             </section>
-
+  
             <section>
-              <h2 className="text-2xl font-bold text-zinc-900 mb-6">How it works</h2>
-              <div className="space-y-6">
+              <h2 className="text-3xl font-black text-foreground mb-10 tracking-tight">How it works</h2>
+              <div className="space-y-10">
                 {[
                   { title: "Select a Professional", desc: "Choose from our top-rated local experts based on their profiles and reviews." },
                   { title: "Pick a Time", desc: "Select a date and time slot that works best for your schedule." },
                   { title: "Relax and Fix", desc: "Our professional arrives at your doorstep and takes care of everything." }
                 ].map((step, i) => (
-                  <div key={i} className="flex gap-4">
-                    <div className="w-8 h-8 rounded-full bg-blue-600 text-white flex items-center justify-center font-bold shrink-0">
+                  <div key={i} className="flex gap-8 group">
+                    <div className="w-12 h-12 rounded-2xl bg-primary text-primary-foreground flex items-center justify-center font-black text-xl shrink-0 shadow-lg shadow-primary/20 group-hover:scale-110 transition-transform">
                       {i + 1}
                     </div>
                     <div>
-                      <h4 className="font-bold text-zinc-900">{step.title}</h4>
-                      <p className="text-zinc-500">{step.desc}</p>
+                      <h4 className="text-2xl font-black text-foreground mb-2">{step.title}</h4>
+                      <p className="text-lg text-muted-foreground font-medium leading-relaxed">{step.desc}</p>
                     </div>
                   </div>
                 ))}
               </div>
             </section>
           </div>
-
+  
           <div className="lg:col-span-1">
-            <div className="sticky top-24">
-              <h2 className="text-2xl font-bold text-zinc-900 mb-6">Book Now</h2>
-              <BookingForm service={service} providers={providers || []} />
+            <div className="sticky top-28">
+              <h2 className="text-3xl font-black text-foreground mb-8 tracking-tight">Book Service</h2>
+              <div className="rounded-[2.5rem] overflow-hidden shadow-2xl shadow-primary/10 border border-border">
+                <BookingForm service={service} providers={providers || []} />
+              </div>
             </div>
           </div>
         </div>
@@ -148,3 +150,4 @@ export default async function ServiceDetailsPage({
     </div>
   )
 }
+
